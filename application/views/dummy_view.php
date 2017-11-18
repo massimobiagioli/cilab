@@ -16,22 +16,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-
-        <script>
-            $(function () {
-                $.post('dummy/dummy_action', function(data) {
-                    var xml = $(data),
-                        response = xml.find('response');
-                    
-                    response.children().each(function(index, node) {
-                        var nodeObj = $(node),
-                            nodeName = nodeObj[0].nodeName,
-                            nodeContent = nodeObj.text();
-                        $('#' + nodeName).html(nodeContent);
-                    });
-                });
-            });
-        </script>
-
+        
+        <div>
+            <button type="button" 
+                    onclick="CI.sendRequest(this)" 
+                    data-action="dummy/dummy_action"
+                    data-update="div1 div2">Execute Dummy Action</button>
+        </div>
+        
+        <script src="<?php echo base_url() . 'public/js/server.js'; ?>"></script>
+        
     </body>
 </html>
